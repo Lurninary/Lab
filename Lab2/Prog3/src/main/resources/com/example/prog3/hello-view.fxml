@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" prefHeight="480.0" prefWidth="640.0" spacing="20.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.prog3.HelloController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <TextField editable="false" layoutX="14.0" layoutY="14.0" text="Борщ" />
+            <TextField editable="false" layoutX="15.0" layoutY="51.0" text="Пюре" />
+            <TextField editable="false" layoutX="16.0" layoutY="87.0" text="Гуляш" />
+            <Button fx:id="PlusButton1" layoutX="174.0" layoutY="14.0" mnemonicParsing="false" onAction="#PlusButton1Clicked" prefHeight="26.0" prefWidth="30.0" text="+" />
+            <Button fx:id="PlusButton2" layoutX="174.0" layoutY="51.0" mnemonicParsing="false" onAction="#PlusButton2Clicked" prefHeight="26.0" prefWidth="30.0" text="+" />
+            <Button fx:id="PlusButton3" layoutX="174.0" layoutY="87.0" mnemonicParsing="false" onAction="#PlusButton3Clicked" prefHeight="26.0" prefWidth="30.0" text="+" />
+            <Button fx:id="MinusButton1" layoutX="211.0" layoutY="13.0" mnemonicParsing="false" onAction="#MinusButton1Clicked" prefHeight="26.0" prefWidth="30.0" text="-" />
+            <Button fx:id="MinusButton2" layoutX="211.0" layoutY="50.0" mnemonicParsing="false" onAction="#MinusButton2Clicked" prefHeight="26.0" prefWidth="30.0" text="-" />
+            <Button fx:id="MinusButton3" layoutX="211.0" layoutY="86.0" mnemonicParsing="false" onAction="#MinusButton3Clicked" prefHeight="26.0" prefWidth="30.0" text="-" />
+            <TextField fx:id="CountText1" alignment="CENTER" editable="false" layoutX="248.0" layoutY="14.0" prefHeight="26.0" prefWidth="30.0" text="0" />
+            <TextField fx:id="CountText2" alignment="CENTER" editable="false" layoutX="248.0" layoutY="51.0" prefHeight="26.0" prefWidth="30.0" text="0" />
+            <TextField fx:id="CountText3" alignment="CENTER" editable="false" layoutX="248.0" layoutY="86.0" prefHeight="26.0" prefWidth="30.0" text="0" />
+            <TextField fx:id="Price1" alignment="CENTER" editable="false" layoutX="304.0" layoutY="13.0" prefHeight="26.0" prefWidth="95.0" text="0" />
+            <TextField fx:id="Price2" alignment="CENTER" editable="false" layoutX="304.0" layoutY="50.0" prefHeight="26.0" prefWidth="95.0" text="0" />
+            <TextField fx:id="Price3" alignment="CENTER" editable="false" layoutX="304.0" layoutY="86.0" prefHeight="26.0" prefWidth="95.0" text="0" />
+            <TextField fx:id="FinalPrice" alignment="CENTER" editable="false" layoutX="136.0" layoutY="135.0" prefHeight="26.0" prefWidth="150.0" text="0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="195.0" prefWidth="540.0">
+         <children>
+            <TextField editable="false" layoutX="14.0" layoutY="40.0" prefHeight="26.0" prefWidth="51.0" text="Борщ" />
+            <TextField editable="false" layoutX="14.0" layoutY="66.0" prefHeight="26.0" prefWidth="51.0" text="Пюре" />
+            <TextField editable="false" layoutX="14.0" layoutY="92.0" prefHeight="26.0" prefWidth="51.0" text="Гуляш" />
+            <TextField fx:id="CountText11" alignment="CENTER" editable="false" layoutX="65.0" layoutY="40.0" prefHeight="26.0" prefWidth="30.0" text="0" />
+            <TextField fx:id="CountText21" alignment="CENTER" editable="false" layoutX="65.0" layoutY="66.0" prefHeight="26.0" prefWidth="30.0" text="0" />
+            <TextField fx:id="CountText31" alignment="CENTER" editable="false" layoutX="65.0" layoutY="92.0" prefHeight="26.0" prefWidth="30.0" text="0" />
+            <TextField fx:id="Price11" alignment="CENTER" editable="false" layoutX="95.0" layoutY="40.0" prefHeight="26.0" prefWidth="95.0" text="0" />
+            <TextField fx:id="Price21" alignment="CENTER" editable="false" layoutX="95.0" layoutY="66.0" prefHeight="26.0" prefWidth="95.0" text="0" />
+            <TextField fx:id="Price31" alignment="CENTER" editable="false" layoutX="95.0" layoutY="92.0" prefHeight="26.0" prefWidth="95.0" text="0" />
+            <TextField fx:id="FinalPrice1" alignment="CENTER" editable="false" layoutX="95.0" layoutY="118.0" prefHeight="26.0" prefWidth="95.0" text="0" />
+            <TextField editable="false" layoutX="14.0" layoutY="118.0" prefHeight="26.0" prefWidth="82.0" text="К оплате" />
+            <Button alignment="CENTER" layoutX="15.0" layoutY="14.0" mnemonicParsing="false" onAction="#OnCheckButtonClicked" prefHeight="26.0" prefWidth="174.0" text="Чек" />
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>
