@@ -1,4 +1,4 @@
-package com.example.threadsjavafx.Client;
+package com.example.threadsjavafx;
 
 
 
@@ -7,6 +7,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
+
+import java.io.IOException;
 
 
 public class HelloController {
@@ -18,8 +20,6 @@ public class HelloController {
 
     @FXML
     private ProgressBar Pr;
-
-    boolean isPaused=true;
 
     @FXML
     void PauseResume(ActionEvent event) {
@@ -41,7 +41,7 @@ public class HelloController {
     }
 
     @FXML
-    void Start(ActionEvent event) {
+    void Start(ActionEvent event) throws IOException {
         model.some_calc(new Updatable() {
             @Override
             public void update(double value) {

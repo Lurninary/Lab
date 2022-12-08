@@ -4,5 +4,5 @@ module com.example.threadsjavafx {
 
 
     opens com.example.threadsjavafx to javafx.fxml;
-    exports com.example.threadsjavafx.Client;
+    exports com.example.threadsjavafx;
 }
