@@ -13,25 +13,29 @@ public class Model implements IModel{
     @Override
     public void some_calc(Updatable updater) {
         this.updater = updater;
+        if (s!=null) Send("CalcRestart", 11);
         try {
-            s = new Socket("127.0.0.1", 1111);
-            System.out.println("Connected");
-            in = s.getInputStream();
-            out = s.getOutputStream();
-            TakeDataThread TakeData = new TakeDataThread();
-            new Thread(TakeData, "TakeThread").start();
+            if (s==null) {
+                s = new Socket("127.0.0.1", 1111);
+                System.out.println("Connected");
+                in = s.getInputStream();
+                out = s.getOutputStream();
+                TakeDataThread TakeData = new TakeDataThread();
+                new Thread(TakeData, "TakeThread").start();
+            }
         }
         catch(Exception e){
             System.out.println("Error: " + e);
         }
+
     }
 
     @Override
     public void Send(String str, int len)
     {
         System.out.println("Client Send");
-        char[] chars = new char[10];
-        for (int i = 0; i < 10; i++)
+        char[] chars = new char[11];
+        for (int i = 0; i < 11; i++)
         {
             chars[i] = (i < len) ? str.charAt(i) : '0';
             try
@@ -65,22 +69,17 @@ public class Model implements IModel{
 
     @Override
     public void stop(){
-        Send("Stop",4);
+        Send("CalcStop",8);
     }
 
     @Override
     public void pause() {
-        Send("Pause",5);
+        Send("CalcPause",9);
     }
 
     @Override
     public void resume() {
-        Send("Resume",6);
-    }
-
-    @Override
-    public void isAlive() {
-        Send("isAlive", 7);
+        Send("CalcResume",10);
     }
 }
 

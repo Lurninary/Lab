@@ -3,6 +3,7 @@ package com.example.threadsjavafx.Server;
 import java.net.*;
 import java.io.*;
 import java.nio.ByteBuffer;
+import java.util.concurrent.TimeUnit;
 
 public class Model {
     private static ServerSocket ss;
@@ -12,7 +13,6 @@ public class Model {
     private static OutputStream out;
 
     private static Calc c;
-    private static double Value;
 
     public static void main(String[] args) throws IOException {
         try {
@@ -34,11 +34,11 @@ public class Model {
             Thread.currentThread().setName("TakeThread");
             System.out.println("Server Take");
             while (true) {
-                synchronized (System.out) {
-                    char[] chars = new char[10];
+
+                    char[] chars = new char[11];
                     char temp;
                     int len = 0;
-                    for (int i = 0; i < 10; i++) {
+                    for (int i = 0; i < 11; i++) {
                         try {
                             temp = (char) in.read();
                             if (temp != '0') {
@@ -55,16 +55,20 @@ public class Model {
                         string[i] = chars[i];
                     }
                     String str = new String(string);
-
+                    System.out.println(str);
 
                     switch (str) {
-                        case ("isAlive") -> c.isAlive();
+                        case ("CalcRestart") -> {
+                            if (c!=null) c.CalcStop();
+                            c = new Calc();
+                            c.start();
+                            System.out.println("Calc Thread Started"); }
                         case ("CalcResume") -> c.CalcResume();
                         case ("CalcPause") -> c.CalcPause();
                         case ("CalcStop") -> c.CalcStop();
                     }
                 }
-            }
+
         };
 
         Thread Take = new Thread(TakeThread);
@@ -74,11 +78,6 @@ public class Model {
         c = new Calc();
         c.start();
         System.out.println("Calc Thread Started");
-
-        while (true)
-        {
-            Send(c.Calc());
-        }
     }
 
     public static void Send(double value) throws IOException
@@ -100,11 +99,6 @@ class Calc extends Thread{
     Double updater = 0.0;
 
 
-    public double Calc()
-    {
-        return updater;
-    }
-
     void CalcStop(){
         Stop=true;
     }
@@ -115,15 +109,21 @@ class Calc extends Thread{
     }
 
     void CalcResume(){
-        Resume=true;
         Pause=false;
-
+        Resume=true;
+        synchronized (System.out)
+        {
+            System.out.notify();
+        }
     }
 
     @Override
     public void run() {
         for(int i = 0; i< 1000; i++){
-            if (Stop) break;
+            if (Stop) {
+                System.out.println("Calc Thread break");
+                break;
+            }
             if (Pause)
             {
                 try {
@@ -137,16 +137,13 @@ class Calc extends Thread{
 
             }
 
-            if (Resume)
-            {
-                synchronized (System.out)
-                {
-                    System.out.notify();
-                }
-
-            }
-
             updater = (double) i / 1000;
+            try {
+                Model.Send(updater);
+            }catch (Exception e)
+            {
+                System.out.println("Error: " + e);
+            }
             System.out.println(updater);
             try {
                 sleep(20);

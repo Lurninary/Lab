@@ -7,6 +7,6 @@ public interface IModel {
     void stop();
     void pause();
     void resume();
-    void isAlive();
+
     void Send(String str, int len);
 }
